@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>小说项目总导图 · 看一眼就知道要干嘛</title>
+<style>
+  :root{
+    --bg:#f6f7fb; --ink:#1f2430; --line:#c9cede;
+    --c1:#e8590c; --c1bg:#fff4ec;
+    --c2:#1971c2; --c2bg:#ecf3fc;
+    --c3:#2f9e44; --c3bg:#ebfbee;
+    --warn:#c92a2a;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{background:var(--bg); color:var(--ink); font-family:"PingFang SC","Microsoft YaHei",sans-serif; padding:24px 16px 80px; line-height:1.55;}
+  header{text-align:center; margin-bottom:18px;}
+  h1{font-size:22px; letter-spacing:1px;}
+  .sub{font-size:12.5px; color:#7a8194; margin-top:4px;}
+  .status{max-width:1180px; margin:14px auto; background:#fff; border:1px solid var(--line); border-radius:12px; padding:12px 16px; font-size:13.5px; display:flex; flex-wrap:wrap; gap:8px 22px; align-items:center;}
+  .status b{color:var(--warn);}
+  .legend{display:flex; gap:14px; justify-content:center; font-size:12.5px; margin-bottom:14px; flex-wrap:wrap;}
+  .legend span{display:flex; align-items:center; gap:6px;}
+  .dot{width:10px;height:10px;border-radius:3px;display:inline-block;}
+  .btns{display:flex; gap:8px; justify-content:center; margin-bottom:16px;}
+  button{font-size:12.5px; padding:6px 14px; border:1px solid var(--line); background:#fff; border-radius:8px; cursor:pointer; color:#3a4150;}
+  button:hover{background:#eef0f6;}
+
+  .tree{max-width:1180px; margin:0 auto; display:flex; flex-direction:column; gap:18px;}
+  details.branch{background:#fff; border:1px solid var(--line); border-radius:14px; overflow:hidden; box-shadow:0 2px 8px rgba(30,40,70,.05);}
+  details.branch>summary{cursor:pointer; padding:14px 18px; font-size:17px; font-weight:700; display:flex; align-items:center; gap:10px; list-style:none; user-select:none;}
+  details.branch>summary::-webkit-details-marker{display:none;}
+  details.branch>summary::after{content:"▾"; margin-left:auto; font-size:13px; opacity:.5;}
+  details.branch:not([open])>summary::after{content:"▸";}
+  .b1>summary{background:var(--c1bg); color:var(--c1);}
+  .b2>summary{background:var(--c2bg); color:var(--c2);}
+  .b3>summary{background:var(--c3bg); color:var(--c3);}
+  .body{padding:14px 18px 18px;}
+
+  ul{list-style:none; padding-left:22px; border-left:2px solid var(--line); margin-left:6px;}
+  details>summary.it{cursor:pointer; list-style:none; padding:7px 0 7px 10px; font-size:14.5px; font-weight:600; position:relative; user-select:none;}
+  details>summary.it::-webkit-details-marker{display:none;}
+  details>summary.it::before{content:"▸"; position:absolute; left:-14px; font-size:12px; opacity:.55; transition:.15s;}
+  details[open]>summary.it::before{transform:rotate(90deg);}
+  li.item{padding:5px 0 5px 14px; font-size:13.5px; position:relative;}
+  li.item::before{content:""; position:absolute; left:0; top:0; bottom:0; border-left:2px solid var(--line);}
+  li.item::after{content:""; position:absolute; left:0; top:1.1em; width:10px; border-top:2px solid var(--line);}
+  .tag{display:inline-block; font-size:11.5px; padding:1px 7px; border-radius:6px; margin-right:6px; vertical-align:1px;}
+  .t-now{background:#ffe3e3; color:var(--warn); font-weight:700;}
+  .t-done{background:#d3f9d8; color:#2b8a3e;}
+  .t-imp{background:#fff3bf; color:#997404;}
+  .muted{color:#8a90a0; font-size:12px;}
+  .key{background:#fff9db; border:1px dashed #e0c96a; border-radius:8px; padding:8px 12px; font-size:13px; margin-top:10px;}
+  .key b{color:#8a6d00;}
+  code{background:#eef0f6; padding:1px 6px; border-radius:5px; font-size:12.5px; font-family:Consolas,monospace;}
+  .anchor{color:#5f3dc4;}
+  footer{max-width:1180px; margin:26px auto 0; font-size:11.5px; color:#98a0b3; text-align:center;}
+  @media(max-width:700px){ h1{font-size:18px;} details.branch>summary{font-size:15px;} }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>《{{书名}}》总导图</h1>
+  <div class="sub">剧情走向 · 创作规则指引 · 设定指引 —— 一张图看一眼就知道要干嘛</div>
+</header>
+
+<div class="status">
+  <span><b>当前断点 = {{第N章}}</b>《{{章标题}}》（{{一句话剧情}}）</span>
+  <span>下一章 = <b>{{第N章}}《{{章标题}}》</b>（细纲 {{是否已审}}，开写授权 {{状态}}）</span>
+  <span>正文 已写 {{N}} 章（写到 {{第N章}}，{{有无待裁的【审】注}}）</span>
+  <span>待办：{{本条待办}}</span>
+</div>
+
+<div class="legend">
+  <span><i class="dot" style="background:#ffe3e3"></i>当前/待办</span>
+  <span><i class="dot" style="background:#d3f9d8"></i>已完成</span>
+  <span><i class="dot" style="background:#fff3bf"></i>关键节点/铁律</span>
+  <span><i class="dot" style="background:#c9cede"></i>支撑分支</span>
+</div>
+
+<div class="btns">
+  <button onclick="document.querySelectorAll('details.branch,details.it2').forEach(d=>d.open=true)">全部展开</button>
+  <button onclick="document.querySelectorAll('details.branch,details.it2').forEach(d=>d.open=false)">全部折叠</button>
+  <button onclick="location.reload()">回到初始</button>
+</div>
+
+<div class="tree">
+
+<!-- ============ 分支1 剧情走向 ============ -->
+<details class="branch b1" open>
+  <summary>🎬 分支一 · 剧情走向（写到哪 / 下一章接什么）</summary>
+  <div class="body">
+    <ul>
+      <li class="item"><span class="tag t-done">已完成</span>正文 已写到 {{第N章}}（共 {{N}} 章连续，无缺章）<span class="muted">·以 `正文/` 实际文件数与 `项目中枢/006_进度.md` 为准</span></li>
+
+      <li class="item"><details class="it2" open><summary class="it">卷1（{{第N章}}-{{第N章}}）{{本卷主线一句话}}</summary>
+        <ul>
+          <li class="item"><span class="tag t-done">done</span>1.1（{{第N章}}-{{第N章}}）{{开局段一句话}}</li>
+          <li class="item">1.2（{{第N章}}-{{第N章}}）{{角色名}}段 · {{段主线}} <span class="muted">{{锚点章}} {{事件}}</span></li>
+          <li class="item">1.3（{{第N章}}-{{第N章}}）{{角色名}}段 · {{段主线}}</li>
+          <li class="item">1.4（{{第N章}}-{{第N章}}）{{角色名}}段 · {{段主线}}</li>
+          <li class="item">1.5（{{第N章}}-{{第N章}}）{{角色名}}段 · {{段主线}}</li>
+          <li class="item">1.6（{{第N章}}-{{第N章}}）{{角色名}}段 · {{主线}} </li>
+          <li class="item"><span class="tag t-imp">核心</span>1.7（{{第N章}}-{{第N章}}）{{中后期主线}}：{{关键事件}} → <b>{{转折章}}</b> → {{收束章}} 收卷</li>
+        </ul>
+      </details></li>
+
+      <li class="item"><details class="it2"><summary class="it">卷2（{{第N章}}-{{第N章}}）{{本卷主线一句话}}</summary>
+        <ul>
+          <li class="item">顺序：{{角色名}} → {{角色名}} → {{角色名}} → {{角色名}} → {{角色名}}</li>
+          <li class="item">感情节点绑定<b>外部事件</b>（{{事件类型}}），禁单独讲述式回忆段</li>
+          <li class="item">配比：{{主菜}}% + {{副线}}% + {{感情}}% + {{外部冲突}}%</li>
+        </ul>
+      </details></li>
+
+      <li class="item"><details class="it2"><summary class="it">卷3（{{第N章}}-{{第N章}}）{{本卷主线一句话}}</summary>
+        <ul>
+          <li class="item">触发链：L1 {{节点一}} <span class="anchor">{{第N章}}</span> → L2 {{节点二}} <span class="anchor">{{第N章}}</span> → L3 {{节点三}} <span class="anchor">{{第N章}}</span> → L4 {{节点四}} <span class="anchor">{{第N章}}</span> → L5 {{节点五}} <span class="anchor">{{第N章}}</span></li>
+          <li class="item">{{收束段}}；<b>{{卷末大事件}}</b> 转卷4</li>
+          <li class="item">配比：{{主菜}}% + {{副线}}% + {{深化}}% + {{外部压力}}%</li>
+        </ul>
+      </details></li>
+
+      <li class="item"><span class="tag t-imp">断点</span>下一接点 = {{第N章}}《{{章标题}}》（{{开局方式}}；细纲 {{范围}} {{是否已审}}）<span class="muted">｜章级细纲：{{已有范围}}；{{缺稿范围}} 需重建</span></li>
+      <li class="key"><b>剧情铁律：</b>修罗场与病娇=主菜，副本升级=调味；每章最多一个升级事件，写完切回家里抢人。开篇 5 万字内必须出修罗场。</li>
+    </ul>
+  </div>
+</details>
+
+<!-- ============ 分支2 创作规则 ============ -->
+<details class="branch b2" open>
+  <summary>✍️ 分支二 · 创作规则指引（怎么写 / 按场景取哪个文件）</summary>
+  <div class="body">
+
+    <ul>
+      <li class="item"><span class="tag t-imp">入口</span><code>项目导引/001_总路由.md</code>（派工单）→ 再读 <code>项目中枢/006_进度.md</code>（写到哪）→ 按场景取规则文件</li>
+
+      <li class="item"><details class="it2"><summary class="it">P0 热梗词库 · 写章前置·首位</summary>
+        <ul>
+          <li class="item">词库本体 = <code>项目中枢/词造数据库/016_热梗词库.md</code>（通用网感层 / OS吐槽层 / 当季热词层）</li>
+          <li class="item"><b>活库规则：</b>每开一批写章前联网刷新当季层，过气词淘汰；<span class="tag t-imp">铁律</span>规则文件里永不写死具体词</li>
+          <li class="item">取用：写到情绪峰值/笑点/OS位取 1-2 个点缀，没有位置就不塞；重虐点不用网感词</li>
+        </ul>
+      </details></li>
+
+      <li class="item"><details class="it2" open><summary class="it">三条主路（按任务选一条）</summary>
+        <ul>
+          <li class="item"><span class="tag t-now">写新章</span><code>项目中枢/写文规则/012_场景卡_写新章.md</code> + <code>014_规则.2（写新章）.md</code>：<br>P0热梗 → P1骨架（1个冲突主事件+结尾钩子+爆点位） → P2写作 → P3十二项 → P4验收 → 交付<br><span class="muted">新段落另过 012 §4.5 四维命中自检（反应链/人设/笑点/去AI味）</span></li>
+          <li class="item"><span class="tag t-now">精修旧章</span><code>项目中枢/文章精修规则/061_规则调用路由.md</code>：<br>诊断先行 → 选本轮唯一主问题（062—083 一轮一份） → 改 → 重跑 → <code>082_门禁验收.md</code> / <code>083_报告交付.md</code></li>
+          <li class="item"><span class="tag t-now">写法总纲</span><code>项目中枢/写文规则/015_规则.3a（写法总纲）.md</code> + <code>015_规则.3i（排版规范）.md</code></li>
+        </ul>
+      </details></li>
+
+      <li class="item"><details class="it2"><summary class="it">P3 门禁（AI 逐项核验）· 全绿才往下</summary>
+        <ul>
+          <li class="item"><b>字数 ≥1500</b>（动态1500~3000，字数是果不是因，够了别凑）</li>
+          <li class="item">长句≥3(≥25字) ｜ 违禁词同词≤2（突然/忽然/此刻/好像/似的）</li>
+          <li class="item">违禁词禁连两段 ｜ 单段≤5行 ｜ 句长中位≥12 ｜ 对话开段≥30% ｜ 复读句式全书≤2</li>
+          <li class="item">破折号=0 ｜ 设问自答≤3 ｜ "不是A是B"≤2 ｜ 常驻角色用名字（禁"他爸/他妈"代称到底）</li>
+          <li class="item">方式：AI 人工逐项核验，给出每项 ✅/❌ 与实测数值（细则见 <code>082_门禁验收.md</code>）</li>
+        </ul>
+      </details></li>
+
+      <li class="item"><details class="it2"><summary class="it">P4 验收十五问（人工）· 全"是"才交付</summary>
+        <ul>
+          <li class="item">Q1无模块 Q2排版不碎 Q3非AI味 Q4病娇五查≥2 Q5节奏快 Q6不灌水</li>
+          <li class="item">Q7读者起波（爆点靠<b>情绪对撞</b>：对立立场硬碰+先蓄满再爆） Q8视角可全知 Q9台词像人</li>
+          <li class="item"><b>Q10 密度够</b>：全章≥1句"一句话顶多句"(并置/双编码/判断前置)，落在爆点/钩子/笑点</li>
+          <li class="item"><b>Q11 镶嵌入味</b>：物证停在物证上不翻译；万金油式总结=拼接，删</li>
+          <li class="item"><b>Q12 次要句短吗</b>：爆点/钩子外，一句话能说完的禁铺成长句</li>
+          <li class="item"><b>Q13 句句连贯吗</b>：相邻两句接不接得住，跳了=补过渡或调语序</li>
+          <li class="item"><b>Q14 照得进现实吗</b>：时间线/记忆/物理/常识四项对一遍</li>
+          <li class="item"><b>Q15 读者期待值管住了吗</b>：兑现一个 + 吊住一个新的；读完脑子空空=期待真空</li>
+        </ul>
+      </details></li>
+
+      <li class="item"><details class="it2"><summary class="it">写法库（写句子的核心招式）</summary>
+        <ul>
+          <li class="item"><span class="tag t-imp">总纲</span><b>好 ≠ 字数多 / ≠ 华丽</b> = 简单词句 + 全章一条闭合逻辑环 + 剧情生动 + 读着顺</li>
+          <li class="item">因果：①词用大白话(解码成本0) ②环=闭合电路(每句推同一个核) → 果=字数自然刚好</li>
+          <li class="item"><b>判断法(逐句)：</b>删掉这句读者断链吗？会断=环内留 / 不断=环外砍</li>
+          <li class="item">招式：反规整总则 · 乱感七招 · 情绪调动法 · <b>情绪对撞爆炸法</b>(冷×热/放×留/笑×狠/认×拒)</li>
+          <li class="item">招式：密度压缩(并置/双编码/判断前置) · 镶嵌入味(物证不说破/场景专属词)</li>
+          <li class="item">表达风格铁律：大白话 / 禁注释残留 / 注释层→正文层 / 读着像人 / 情绪峰值用活人脱口词</li>
+        </ul>
+      </details></li>
+
+      <li class="key"><b>一句话记牢：</b>先读 <code>001_总路由.md</code> → 写新走 012+014、精修走 061—083 → 判断"写得好不好"查 015_规则.3a → 词从 <code>016_热梗词库.md</code> 拿，不写死进规则。</li>
+    </ul>
+  </div>
+</details>
+
+<!-- ============ 分支3 设定指引 ============ -->
+<details class="branch b3" open>
+  <summary>📚 分支三 · 设定指引（写什么 / 不能碰什么 · 权威=005_项目核心）</summary>
+  <div class="body">
+    <ul>
+      <li class="item"><details class="it2" open><summary class="it">T0 灵魂层（改 = 推翻本书）</summary>
+        <ul>
+          <li class="item">核心爽感 = {{设定名}}</li>
+          <li class="item">核心反差 = {{设定名}}</li>
+          <li class="item">听男主话 = {{设定名}}</li>
+          <li class="item"><span class="tag t-imp">病娇边界</span>{{设定名}}</li>
+          <li class="item">双引擎 = {{设定名}}</li>
+        </ul>
+      </details></li>
+
+      <li class="item"><details class="it2"><summary class="it">T1 世界观层（冻结区·改需拍板）</summary>
+        <ul>
+          <li class="item">时间差 = {{设定名}}</li>
+          <li class="item">修炼链 = {{设定名}}<span class="muted">全书禁数字等级</span></li>
+          <li class="item">世界硬规则 = {{设定名}}</li>
+          <li class="item">系统与财富 = {{设定名}}</li>
+          <li class="item">装备与经济 = {{设定名}}</li>
+        </ul>
+      </details></li>
+
+      <li class="item"><details class="it2"><summary class="it">T2 人设层（角色卡 · 改需对照大纲）</summary>
+        <ul>
+          <li class="item"><b>男主 {{男主名}}</b> {{年龄}}｜{{修为口径}}｜{{三件套}}｜{{底色}}</li>
+          <li class="item"><b>{{角色名}}</b> {{种族/身份}}｜{{手段}}｜登场<span class="anchor">{{第N章}}</span>｜爆点 {{爆点}}</li>
+          <li class="item"><b>{{角色名}}</b> {{种族/身份}}｜{{手段}}｜登场<span class="anchor">{{第N章}}</span>｜爆点 {{爆点}}</li>
+          <li class="item"><b>{{角色名}}</b> {{种族/身份}}｜{{手段}}｜登场<span class="anchor">{{第N章}}</span>｜爆点 {{爆点}}</li>
+          <li class="item"><b>{{角色名}}</b> {{种族/身份}}｜{{手段}}｜登场<span class="anchor">{{第N章}}</span>｜爆点 {{爆点}}</li>
+          <li class="item"><b>{{角色名}}</b> {{种族/身份}}｜{{手段}}｜登场<span class="anchor">{{第N章}}</span>｜爆点 {{爆点}}</li>
+        </ul>
+      </details></li>
+
+      <li class="item"><details class="it2"><summary class="it">T3 风格层（违反即废稿 · 执行落点=<code>015_规则.3a</code>）</summary>
+        <ul>
+          <li class="item">文风基调 = {{设定名}} ｜ 修罗场必须用{{体系内手段}}禁{{违和写法}} ｜ 男主{{行为口径}}</li>
+          <li class="item">暧昧/病娇尺度 = {{设定名}} ｜ 禁{{禁区一}} ｜ 禁{{禁区二}}</li>
+          <li class="item">节奏与句式 = {{设定名}}（快节奏/短句/对话多/禁比喻轰炸/禁否定式列举）</li>
+          <li class="item">文风三支柱：{{支柱一}} + {{支柱二}} + {{支柱三}}</li>
+          <li class="item">逼格外化 = {{设定名}}（禁直写"放威压"）</li>
+        </ul>
+      </details></li>
+
+      <li class="item"><details class="it2"><summary class="it">T4 节奏层（密度与分卷）</summary>
+        <ul>
+          <li class="item">爽点密度 = {{设定名}}</li>
+          <li class="item">女主登场 = {{设定名}} ｜ 每卷末 = {{设定名}} ｜ 前10章 = {{设定名}}</li>
+        </ul>
+      </details></li>
+    </ul>
+  </div>
+</details>
+
+</div>
+
+<footer>004_思维导图.html · 单文件离线导图 · 数据源 = 005_项目核心 / 006_进度 / 012 场景卡 / 061 规则调用路由（模板版：全部具体书名/角色名/章号已占位，新书填完 {{}} 即可用）</footer>
+
+<script>
+  document.querySelectorAll('details.it2').forEach(d=>{
+    const s=d.querySelector('summary'); if(s){ d.open = d.open || false; }
+  });
+</script>
+</body>
+</html>
