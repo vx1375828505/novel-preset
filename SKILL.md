@@ -23,11 +23,14 @@ description: 网文小说项目库操作系统。用户要开新书、新建小�
 
 | 工具 | 能干什么 | 什么时候该调 | 落盘位置 |
 |---|---|---|---|
-| `novel_write` | 章节级读写：list / read / write / search / stats / rule / backup | 写新章、读某章、全文搜关键词查一致性、查规则原文、**改章前先 backup** | `正文/第NNN章：标题.txt` |
+| `novel_write` | 章节级读写：list / read / write / search / stats / rule / backup | 写新章、读某章、全文搜关键词查一致性、查规则原文（`action=rule` 只覆盖规则本体，见下）、**改章前先 backup** | `正文/第NNN章：标题.txt` |
 | `novel_polish` | prepare=读原稿+精修规则产出【润色任务单】；apply=把润色结果写回（写前自动备份原稿） | 精修既有章节、去 AI 腔调句式；只读体检用 `novel_review action=humanize` | `正文/` 同上 |
-| `novel_memory_save` | 覆盖写剧情记忆，写前自动备份原文 | 每写完一章更新当前卷记忆与人物状态；下一章开写前发现记忆过期，先更新再写 | `项目中枢/剧情记忆/019_当前卷.md`、`020_人物状态总表.md` |
-| `novel_memory_query` | 检索/读取剧情记忆（current_volume / character_states） | 开写前读上一章状态、查某伏笔是否已回收 | 同上 |
+| `novel_memory_save` | 覆盖写剧情记忆，写前自动备份原文 | 每写完一章更新当前卷记忆与人物状态；下一章开写前发现记忆过期，先更新再写。**剧情记忆归本工具管，不要用 `action=rule` 去捞 019/020** | `项目中枢/剧情记忆/019_当前卷.md`、`020_人物状态总表.md` |
+| `novel_memory_query` | 检索/读取剧情记忆（current_volume / character_states） | 开写前读上一章状态、查某伏笔是否已回收。**019/020 用本工具读，不要用 `action=rule`** | 同上 |
 | `novel_db_maintenance` | checkup=全库体检出报告；metrics=趋势表追加一行；changelog=补变更日志；retire=文件改名 `_废弃_` 进退役归档 | 写完一批章节例行体检（先 checkup 再 metrics）；动过库结构补 changelog；清理过期文件用 retire | `数据库维护/` |
+
+> `action=rule` 只覆盖规则本体：`项目中枢/` 顶层（005_项目核心、006_进度）、`写文规则/`（012—015）、`文章精修规则/`（061—083）。
+> **不是规则**：剧情记忆（019/020 是当前状态）、词造数据库（016—018/084/085 是素材）、数据库维护（055—057 是库的免疫系统）、核心资料库、正文——这些要读就直接用通用文件工具读，不要当成规则来执行。
 
 **调用规则**
 
