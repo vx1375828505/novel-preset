@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>小说项目总导图 · 看一眼就知道要干嘛</title>
+<style>
+  :root{
+    --bg:#f6f7fb; --ink:#1f2430; --line:#c9cede;
+    --c1:#e8590c; --c1bg:#fff4ec;
+    --c2:#1971c2; --c2bg:#ecf3fc;
+    --c3:#2f9e44; --c3bg:#ebfbee;
+    --warn:#c92a2a;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{background:var(--bg); color:var(--ink); font-family:"PingFang SC","Microsoft YaHei",sans-serif; padding:24px 16px 80px; line-height:1.55;}
+  header{text-align:center; margin-bottom:18px;}
+  h1{font-size:22px; letter-spacing:1px;}
+  .sub{font-size:12.5px; color:#7a8194; margin-top:4px;}
+  .status{max-width:1180px; margin:14px auto; background:#fff; border:1px solid var(--line); border-radius:12px; padding:12px 16px; font-size:13.5px; display:flex; flex-wrap:wrap; gap:8px 22px; align-items:center;}
+  .status b{color:var(--warn);}
+  .legend{display:flex; gap:14px; justify-content:center; font-size:12.5px; margin-bottom:14px; flex-wrap:wrap;}
+  .legend span{display:flex; align-items:center; gap:6px;}
+  .dot{width:10px;height:10px;border-radius:3px;display:inline-block;}
+  .btns{display:flex; gap:8px; justify-content:center; margin-bottom:16px;}
+  button{font-size:12.5px; padding:6px 14px; border:1px solid var(--line); background:#fff; border-radius:8px; cursor:pointer; color:#3a4150;}
+  button:hover{background:#eef0f6;}
+
+  .tree{max-width:1180px; margin:0 auto; display:flex; flex-direction:column; gap:18px;}
+  details.branch{background:#fff; border:1px solid var(--line); border-radius:14px; overflow:hidden; box-shadow:0 2px 8px rgba(30,40,70,.05);}
+  details.branch>summary{cursor:pointer; padding:14px 18px; font-size:17px; font-weight:700; display:flex; align-items:center; gap:10px; list-style:none; user-select:none;}
+  details.branch>summary::-webkit-details-marker{display:none;}
+  details.branch>summary::after{content:"▾"; margin-left:auto; font-size:13px; opacity:.5;}
+  details.branch:not([open])>summary::after{content:"▸";}
+  .b1>summary{background:var(--c1bg); color:var(--c1);}
+  .b2>summary{background:var(--c2bg); color:var(--c2);}
+  .b3>summary{background:var(--c3bg); color:var(--c3);}
+  .body{padding:14px 18px 18px;}
+
+  ul{list-style:none; padding-left:22px; border-left:2px solid var(--line); margin-left:6px;}
+  details>summary.it{cursor:pointer; list-style:none; padding:7px 0 7px 10px; font-size:14.5px; font-weight:600; position:relative; user-select:none;}
+  details>summary.it::-webkit-details-marker{display:none;}
+  details>summary.it::before{content:"▸"; position:absolute; left:-14px; font-size:12px; opacity:.55; transition:.15s;}
+  details[open]>summary.it::before{transform:rotate(90deg);}
+  li.item{padding:5px 0 5px 14px; font-size:13.5px; position:relative;}
+  li.item::before{content:""; position:absolute; left:0; top:0; bottom:0; border-left:2px solid var(--line);}
+  li.item::after{content:""; position:absolute; left:0; top:1.1em; width:10px; border-top:2px solid var(--line);}
+  .tag{display:inline-block; font-size:11.5px; padding:1px 7px; border-radius:6px; margin-right:6px; vertical-align:1px;}
+  .t-now{background:#ffe3e3; color:var(--warn); font-weight:700;}
+  .t-done{background:#d3f9d8; color:#2b8a3e;}
+  .t-imp{background:#fff3bf; color:#997404;}
+  .muted{color:#8a90a0; font-size:12px;}
+  .key{background:#fff9db; border:1px dashed #e0c96a; border-radius:8px; padding:8px 12px; font-size:13px; margin-top:10px;}
+  .key b{color:#8a6d00;}
+  code{background:#eef0f6; padding:1px 6px; border-radius:5px; font-size:12.5px; font-family:Consolas,monospace;}
+  .anchor{color:#5f3dc4;}
+  footer{max-width:1180px; margin:26px auto 0; font-size:11.5px; color:#98a0b3; text-align:center;}
+  @media(max-width:700px){ h1{font-size:18px;} details.branch>summary{font-size:15px;} }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>《师尊别装了，我们早就是道侣了》总导图</h1>
+  <div class="sub">剧情走向 · 创作规则指引 · 设定指引 —— 一张图看一眼就知道要干嘛</div>
+</header>
+
+<div class="status">
+  <span><b>当前断点 = ch104</b>《档案》（温宁台账摊牌·收徒·第八拨使团）</span>
+  <span>下一章 = <b>ch105 罗铮线《你敢认吗》</b>（细纲ch105-108已审，开写授权冻结中）</span>
+  <span>正文 ch001-104 已完成（104 章连续，ch104 带2处【审】注待裁）</span>
+  <span>全量体检：10-21基线报告缺失（待补扫/找回）；ch004 已重写→人工审核中；ch003 结构优化待出报告</span>
+</div>
+
+<div class="legend">
+  <span><i class="dot" style="background:#ffe3e3"></i>当前/待办</span>
+  <span><i class="dot" style="background:#d3f9d8"></i>已完成</span>
+  <span><i class="dot" style="background:#fff3bf"></i>关键节点/铁律</span>
+  <span><i class="dot" style="background:#c9cede"></i>支撑分支</span>
+</div>
+
+<div class="btns">
+  <button onclick="document.querySelectorAll('details.branch,details.it2').forEach(d=>d.open=true)">全部展开</button>
+  <button onclick="document.querySelectorAll('details.branch,details.it2').forEach(d=>d.open=false)">全部折叠</button>
+  <button onclick="location.reload()">回到初始</button>
+</div>
+
+<div class="tree">
+
+<!-- ============ 分支1 剧情走向 ============ -->
+<details class="branch b1" open>
+  <summary>🎬 分支一 · 剧情走向（写到哪 / 下一章接什么）</summary>
+  <div class="body">
+    <ul>
+      <li class="item"><span class="tag t-done">已完成</span>正文 ch001-ch104 已写完，104 章连续无缺（11-07 起 ch007 拆为007/008、ch008-103 全部+1，苏晚提前至 ch009）</li>
+
+      <li class="item"><details class="it2" open><summary class="it">卷1（1-182）五女登场 · 修罗场开局</summary>
+        <ul>
+          <li class="item"><span class="tag t-done">done</span>1.1(1-9) 男主暴富躺平</li>
+          <li class="item">1.2(9-18) 苏晚段·提前揽局 <span class="muted">ch009 临时女仆夜访初遇(半明) / ch010 女主视角全揭 / ch015-017 痕迹互装 / ch018 书房收网</span></li>
+          <li class="item">1.3(21-40) 白九段+双女修罗场 <span class="muted">ch027狐变人 / ch028登门</span></li>
+          <li class="item">1.4(41-60) 姜璃段+三女 <span class="muted">ch049赤脚邻居·亮身份</span></li>
+          <li class="item">1.5(61-80) 周吟霜段+四女 <span class="muted">ch069新来掌勺 / ch072亮身份</span></li>
+          <li class="item">1.6(81-104) 凤舞段+五女集结 <span class="muted">ch090亮身份 / ch093孩子上桌 / ch099凤舞出手 / ch102守护者授牌 / ch104档案</span></li>
+          <li class="item"><span class="tag t-imp">核心</span>1.7(104-183) 守护者时代：ch105 罗铮线开局 → 国宴/相亲/手机保卫战/婚礼双打脸 → <b>ch163 开刷地球秘境</b> → ch179-183 五女大修罗场收束</li>
+        </ul>
+      </details></li>
+
+      <li class="item"><details class="it2"><summary class="it">卷2（184-353）修真心结 · 每30章一心结</summary>
+        <ul>
+          <li class="item">顺序：苏晚 → 白九 → 姜璃 → 周吟霜 → 凤舞</li>
+          <li class="item">感情节点绑<b>位面仇敌事件</b>（探子/使者/骗子/仇家/追兵），禁单独讲述式回忆段</li>
+          <li class="item">配比：修罗场60% + 副本刷本20% + 感情嵌入15% + 外部冲突5%</li>
+        </ul>
+      </details></li>
+
+      <li class="item"><details class="it2"><summary class="it">卷3（354-503）面对 · 男主契机链 L1→L5</summary>
+        <ul>
+          <li class="item">L1 主动参与 <span class="anchor">ch354</span> → L2 关系质变 <span class="anchor">ch404(沉默三秒)</span> → L3 放下任务 <span class="anchor">ch439(关键一问)</span> → L4 离别预演 <span class="anchor">ch474(征召令)</span> → L5 彻底面对 <span class="anchor">ch502("那段日子→我的日子")</span></li>
+          <li class="item">498-501 升维前夜离愁；<b>ch503 升维之门现世</b> 转卷4</li>
+          <li class="item">配比：修罗场50% + 离愁预演25% + 副本深化15% + 外部压力10%</li>
+        </ul>
+      </details></li>
+
+      <li class="item"><span class="tag t-imp">断点</span>下一接点 = ch105 罗铮线《你敢认吗》（全网喊话开局；细纲草案 ch105-108 已审五项，开写授权暂不写）<span class="muted">｜章级细纲：ch105-108 罗铮线草案 + ch181-500；ch109-183 需重建（外部草案已丢）；使团弧线 ch112 起交织（ch111+1）</span></li>
+      <li class="key"><b>剧情铁律：</b>修罗场与病娇=主菜，副本升级=调味；每章最多一个升级事件，写完切回家里抢人。开篇 5 万字内必须出修罗场。</li>
+    </ul>
+  </div>
+</details>
+
+<!-- ============ 分支2 创作规则 ============ -->
+<details class="branch b2" open>
+  <summary>✍️ 分支二 · 创作规则指引（怎么写 / 按场景取哪个文件）</summary>
+  <div class="body">
+
+    <ul>
+      <li class="item"><span class="tag t-imp">入口</span><code>02_进度·【总路由】</code>（S0 顶部）——先读 02 第一段，再按场景取下面三个文件（03_规则.md 已于 2026-10-12 撤销并入 02）</li>
+
+      <li class="item"><details class="it2"><summary class="it">P0 热梗词库 · 写章前置·首位</summary>
+        <ul>
+          <li class="item">词库本体 = <code>草稿/016_热梗词库.md</code>（通用网感层 / OS吐槽层 / 当季热词层）</li>
+          <li class="item"><b>活库规则：</b>每开一批写章前联网刷新当季层，过气词淘汰；<span class="tag t-imp">铁律</span>规则文件里永不写死具体词</li>
+          <li class="item">取用：写到情绪峰值/笑点/OS位取 1-2 个点缀，没有位置就不塞；重虐点不用网感词</li>
+        </ul>
+      </details></li>
+
+      <li class="item"><details class="it2" open><summary class="it">场景三件套（2026-10-12 规则三分文件）</summary>
+        <ul>
+          <li class="item"><span class="tag t-now">写新章</span><code>014_规则.2（写新章）.md</code>：<br>P0热梗(该文件顶部) → P1骨架(30秒：1个冲突主事件+结尾钩子+爆点位) → P2写作(注释法：一行没注释=删) → P3 → P4 → 交付<br><span class="muted">失败回路：P4任一"否" → 回P2改对应段 → 重跑P3/P4，循环到全"是"</span></li>
+          <li class="item"><span class="tag t-now">精修旧章</span><code>规则.1（精修文章）.md</code>：<br>P3红项 → 诊断先行 → fix函数 → 重跑(迭代, max_rounds=5) → P4<br><span class="muted">精修刀：砍环外 / 砍次要句 / 查衔接 / 查现实 / 查期待(S8) / 删说破 / 去AI味 / 禁灌水</span></li>
+          <li class="item"><span class="tag t-now">写法风格</span><code>规则.3（写法风格）.md</code> = 复用核心：<br>P3 门禁 L1_01~L1_13 + P4 十五问 + L3写法库 + 表达风格铁律 + 参考手法27条</li>
+        </ul>
+      </details></li>
+
+      <li class="item"><details class="it2"><summary class="it">P3 门禁 L1_01~L1_13（AI人工核验）· 全绿才往下</summary>
+        <ul>
+          <li class="item"><b>字数 ≥1500</b>（动态1500~3000，字数是果不是因，够了别凑）</li>
+          <li class="item">长句≥3(≥25字) ｜ 违禁词同词≤2(突然/忽然/此刻/好像/似的)</li>
+          <li class="item">违禁词禁连两段 ｜ 单段≤5行 ｜ 句长中位≥12 ｜ 对话开段≥30% ｜ 复读句式全书≤2</li>
+          <li class="item">L1_10 破折号=0 ｜ L1_11 设问自答≤3 ｜ L1_12 "不是A是B"≤2 ｜ L1_13 常驻角色用名字（禁"他爸/他妈"代称到底）</li>
+          <li class="item">方式：AI 人工逐项核验，给出每项 ✅/❌ 与实测数值（脚本方式已于2026-10-13废除）</li>
+        </ul>
+      </details></li>
+
+      <li class="item"><details class="it2"><summary class="it">P4 十五问（人工验收）· 全"是"才交付</summary>
+        <ul>
+          <li class="item">Q1无模块 Q2排版不碎 Q3非AI味 Q4病娇五查≥2 Q5节奏快 Q6不灌水</li>
+          <li class="item">Q7读者起波（爆点靠<b>情绪对撞</b>：对立立场硬碰+先蓄满再爆） Q8视角可全知 Q9台词像人</li>
+          <li class="item"><b>Q10 密度够</b>：全章≥1句"一句话顶多句"(并置/双编码/判断前置)，落在爆点/钩子/笑点</li>
+          <li class="item"><b>Q11 镶嵌入味</b>：物证停在物证上不翻译；出现"挺好/值/放心了"万金油=拼接，删</li>
+          <li class="item"><b>Q12 次要句短吗</b>：爆点/钩子外的地方，一句话能说完的禁铺成长句——长度跟着重要性走</li>
+          <li class="item"><b>Q13 句句连贯吗</b>：相邻两句接不接得住，跳了=补过渡或调语序，禁硬跳</li>
+          <li class="item"><b>Q14 照得进现实吗</b>：时间线/记忆/物理/常识四项对一遍，照不进现实的改到成立</li>
+          <li class="item"><b>Q15 读者期待值管住了吗</b>（2026-10-14 新增·S8）：每章读完读者心里得有"接下来该发生啥"——兑现了一个 + 吊住一个新的；读完脑子空空=期待真空，回P2补钩子</li>
+        </ul>
+      </details></li>
+
+      <li class="item"><details class="it2"><summary class="it">L3 写法库（写句子的核心招式）</summary>
+        <ul>
+          <li class="item"><span class="tag t-imp">总纲</span><b>好 ≠ 字数多 / ≠ 华丽</b> = 简单词句 + 全章一条闭合逻辑环 + 剧情生动 + 读着顺</li>
+          <li class="item">因果：①词用大白话(解码成本0) ②环=闭合电路(每句推同一个核) → 果=字数自然刚好</li>
+          <li class="item"><b>判断法(逐句)：</b>删掉这句读者断链吗？会断=环内留 / 不断=环外砍</li>
+          <li class="item">招式：反规整总则 · 乱感七招 · 情绪调动法 · <b>情绪对撞爆炸法</b>(冷×热/放×留/笑×狠/认×拒，先蓄满再爆，爆后停一拍不解释)</li>
+          <li class="item">招式：密度压缩(并置/双编码/判断前置) · 镶嵌入味(物证不说破/场景专属词/顺流不磕焊)</li>
+          <li class="item">表达风格铁律5条：大白话 / 禁注释残留 / 注释层→正文层 / 读着像不像人 / 情绪峰值落点词用活人脱口词禁文学腔</li>
+        </ul>
+      </details></li>
+
+      <li class="key"><b>一句话记牢：</b>先读 02 顶部【总路由】 → 写新走 规则.2、精修走 规则.1 → 判断"写得好不好"永远查 规则.3（含 T3铁律/禁忌） → 词从 草稿/016_热梗词库.md 拿，不写死进规则。</li>
+    </ul>
+  </div>
+</details>
+
+<!-- ============ 分支3 设定指引 ============ -->
+<details class="branch b3" open>
+  <summary>📚 分支三 · 设定指引（写什么 / 不能碰什么 · 权威=01_项目核心）</summary>
+  <div class="body">
+    <ul>
+      <li class="item"><details class="it2" open><summary class="it">T0 灵魂层（改 = 推翻本书）</summary>
+        <ul>
+          <li class="item">核心爽感 = 五个能毁天灭地的大乘期女修围着抢一个凡人，他只想躺平</li>
+          <li class="item">核心反差 = 五女大乘期 vs 男主蓝星<b>零修为</b>（神魂封印）但脑子门儿清，装猪被虎宠</li>
+          <li class="item">听男主话 = 修罗场再凶，他一句话摁住（"别打了"立刻收神通）</li>
+          <li class="item"><span class="tag t-imp">病娇边界</span>只在争宠发力，不毁世界、不毁蓝星</li>
+          <li class="item">双引擎(1-501) = ①装逼打脸 ②修罗场病娇；<b>副本刷本只是调味</b>，ch163 才起步</li>
+        </ul>
+      </details></li>
+
+      <li class="item"><details class="it2"><summary class="it">T1 世界观层（冻结区·改需拍板）</summary>
+        <ul>
+          <li class="item">时间差 = 五位面9999年 ≈ 蓝星3年；五女修为在蓝星不被压制</li>
+          <li class="item">修炼链 = 筑基→金丹→元婴→化神→合体→大乘→(一觉四件套)→渡劫→人仙…→金仙(全书战力顶点)<span class="muted">全书禁数字等级</span></li>
+          <li class="item">三硬规则：蓝星永远是下界不长大 / 五位面独立 / 天塔=祖星↔仙界连接</li>
+          <li class="item">系统已彻底消失，结算=万亿财富+庄园+公司股权；<b>ch1-162不修炼，ch163开刷</b></li>
+          <li class="item">装备禁数字表（写到哪临时加）· 灵石=全书唯一基础货币 · 禁为离谱而离谱</li>
+        </ul>
+      </details></li>
+
+      <li class="item"><details class="it2"><summary class="it">T2 人设层（五女卡 · 改需对照大纲）</summary>
+        <ul>
+          <li class="item"><b>男主 叶上天</b> 26岁｜零修为装傻但前大乘期全懂｜三件套：搞笑/一本正经胡说八道/撩妹｜内心闷骚是底色，嘴上不露</li>
+          <li class="item"><b>苏晚</b> 人族圣族·大师姐正宫｜威压结界｜寻师几千年第一个被弃｜登场<span class="anchor">ch009/010/018</span>（女仆装只用这一次）｜爆点"你欠我的是我们孩子的父亲"</li>
+          <li class="item"><b>白九</b> 九尾天狐·二弟子保镖｜妖气真火｜禁写成普通黑猫｜登场<span class="anchor">ch027/028</span>｜爆点"他用背替她挡那一刀"</li>
+          <li class="item"><b>姜璃</b> 神朝帝女·三弟子邻居｜龙气穿墙｜登场<span class="anchor">ch049</span>｜爆点"被劫持逼婚只有他伸手·背她走八个月"</li>
+          <li class="item"><b>周吟霜</b> 剑道关门弟子·四弟子厨师｜剑意外泄(碗裂/案板裂)｜登场<span class="anchor">ch069</span>｜爆点"剑能杀人，也能切菜"</li>
+          <li class="item"><b>凤舞</b> 幽月魔宫少宫主·五弟子秘书｜月华结界｜登场<span class="anchor">ch090</span>（出手ch099）｜爆点 第一章告别·怀孕六个月·最后被弃</li>
+        </ul>
+      </details></li>
+
+      <li class="item"><details class="it2"><summary class="it">T3 风格层（违反即废稿 · <span class="tag t-imp">已迁规则.3</span> · 10条RULE）</summary>
+        <ul>
+          <li class="item">狗血爽文无脑夸张 ｜ 修罗场必须用<b>修真手段</b>禁都市女人抢男人 ｜ 男主装傻不露</li>
+          <li class="item">病娇+暧昧老司机禁小清新 ｜ 禁文艺禁苦情禁大段内心戏<b>禁结尾金句</b></li>
+          <li class="item">快节奏短句对话多 ｜ 禁比喻轰炸 ｜ 时间/转场词可用（只收连三段） ｜ 禁否定式列举 ｜ 禁解释性逆接</li>
+          <li class="item">文风三支柱：<b>病娇修罗场(魂) + 狗血爽文日常(底色) + 男主劲爆(点睛)</b> = 爽文</li>
+          <li class="item">修真者逼格 = 蓝星物理异常外化（灯灭/结霜/东西裂/温度变），禁写"放威压"</li>
+        </ul>
+      </details></li>
+
+      <li class="item"><details class="it2"><summary class="it">T4 节奏层（密度与分卷）</summary>
+        <ul>
+          <li class="item">爽点密度：每章1小爽 / 每5章1中爽 / 每20章1大高潮</li>
+          <li class="item">女主逐位登场不扎堆 ｜ 每卷末给当前女主一次完整过往情绪爆点 ｜ 前10章锁定不动</li>
+        </ul>
+      </details></li>
+    </ul>
+  </div>
+</details>
+
+</div>
+
+<footer>004_思维导图.html · 单文件离线导图 · 源自 01_项目核心 / 02_进度 / 规则.1/2/3（2026-11-11 更新：基线报告缺失待补扫、ch004 重写→人工审核、ch003 结构优化待出报告、ch109-183 细纲缺需重建；引号全项目统一直引号）</footer>
+
+<script>
+  document.querySelectorAll('details.it2').forEach(d=>{
+    const s=d.querySelector('summary'); if(s){ d.open = d.open || false; }
+  });
+</script>
+</body>
+</html>
